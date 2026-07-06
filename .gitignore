@@ -1,0 +1,14 @@
+/build/
+/.venv/
+artifacts/
+AGENTS.md
+compile_commands.json
+.cache/
+*.o
+*.a
+CMakeUserPresets.json
+__pycache__/
+.pytest_cache/
+.clangd
+.idea/
+.vscode/

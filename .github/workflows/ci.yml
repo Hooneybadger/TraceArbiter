@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cxx: [g++, clang++]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Clang
+        if: matrix.cxx == 'clang++'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
+      - name: Build
+        run: cmake --build build -j "$(nproc)"
+      - name: Unit tests
+        run: ctest --test-dir build --output-on-failure
+        # Public CI must not require hardware ftrace or root.
