@@ -30,3 +30,7 @@ target_include_directories(tracearbiter_lib PUBLIC include)
 find_package(Threads REQUIRED)
 target_link_libraries(tracearbiter_lib PUBLIC Threads::Threads)
 target_compile_options(tracearbiter_lib PRIVATE -Wall -Wextra -Wpedantic)
+
+add_executable(tracearbiter src/main.cpp)
+target_link_libraries(tracearbiter PRIVATE tracearbiter_lib)
+target_compile_options(tracearbiter PRIVATE -Wall -Wextra -Wpedantic)
