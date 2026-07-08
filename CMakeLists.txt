@@ -34,3 +34,23 @@ target_compile_options(tracearbiter_lib PRIVATE -Wall -Wextra -Wpedantic)
 add_executable(tracearbiter src/main.cpp)
 target_link_libraries(tracearbiter PRIVATE tracearbiter_lib)
 target_compile_options(tracearbiter PRIVATE -Wall -Wextra -Wpedantic)
+
+include(CTest)
+if(BUILD_TESTING)
+    add_executable(test_budget tests/test_budget.cpp)
+    target_link_libraries(test_budget PRIVATE tracearbiter_lib)
+    add_test(NAME budget COMMAND test_budget)
+
+    add_executable(test_planner tests/test_planner.cpp)
+    target_link_libraries(test_planner PRIVATE tracearbiter_lib)
+    add_test(NAME planner COMMAND test_planner)
+
+    add_executable(test_tracefs_parser tests/test_tracefs_parser.cpp)
+    target_link_libraries(test_tracefs_parser PRIVATE tracearbiter_lib)
+    add_test(NAME tracefs_parser COMMAND test_tracefs_parser
+             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+    add_executable(test_tracefs_session tests/test_tracefs_session.cpp)
+    target_link_libraries(test_tracefs_session PRIVATE tracearbiter_lib)
+    add_test(NAME tracefs_session COMMAND test_tracefs_session)
+endif()

@@ -1,0 +1,9 @@
+entries: 128
+overrun: 3
+commit overrun: 1
+bytes: 4096
+oldest event ts: 0
+now ts: 10
+dropped events: 2
+read events: 100
+ignored: not-a-number
