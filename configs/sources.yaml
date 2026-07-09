@@ -1,0 +1,9 @@
+# Candidate source families. Availability is discovered on the host.
+
+candidates:
+  - sched:sched_switch
+  - sched:sched_waking
+  - sched:sched_wakeup
+  - sched:sched_process_exit
+  - exceptions:page_fault_user
+  - exceptions:page_fault_kernel

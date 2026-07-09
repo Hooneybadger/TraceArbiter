@@ -1,0 +1,11 @@
+# Experiment matrix is frozen after calibration. This file is a skeleton.
+
+campaign_id: unset
+status: draft
+workloads: []
+budgets: []
+baselines:
+  - B0
+  - B1
+  - B2
+  - B3

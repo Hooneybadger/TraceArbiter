@@ -1,0 +1,8 @@
+# Frozen from calibration-v1 calibration. Do not retune after holdout.
+buffer_kb: 2048
+max_target_overhead_pct: 0.375000
+max_trace_mb_per_sec: 3.256805
+critical_buffer_floor: 0.5
+weights:
+  trace_rate: 1.0
+  overhead: 1.0

@@ -1,0 +1,16 @@
+# User-declared diagnostic priorities. Not measured truth.
+# Keys are quoted because YAML would split on ':'.
+
+sources:
+  "sched:sched_switch":
+    priority: critical
+  "sched:sched_waking":
+    priority: critical
+  "sched:sched_wakeup":
+    priority: critical
+  "sched:sched_process_exit":
+    priority: useful
+  "exceptions:page_fault_user":
+    priority: useful
+  "raw_syscalls:sys_enter":
+    priority: bulk

@@ -1,0 +1,12 @@
+campaign_id: native-holdout-v1
+status: frozen
+calibration_campaign: calibration-v1
+workloads:
+  - blackscholes
+  - swaptions
+  - data-caching
+budgets: [small, medium, large]
+baselines: [B0, B1, B2, B3]
+reference: critical-only large buffer
+reps: 5
+note: Do not retune planner weights after this freeze. Holdout interpretation: admission, not partitioning.
