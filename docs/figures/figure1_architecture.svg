@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="220" viewBox="0 0 920 220">
+  <rect width="920" height="220" fill="#f7f7f5"/>
+  <text x="20" y="28" font-family="sans-serif" font-size="16">TraceArbiter — admission under finite ring-buffer capacity</text>
+  <g font-family="sans-serif" font-size="12">
+    <rect x="20" y="50" width="150" height="48" fill="#fff" stroke="#333"/>
+    <text x="30" y="78">discover</text>
+    <rect x="200" y="50" width="150" height="48" fill="#fff" stroke="#333"/>
+    <text x="210" y="78">calibrate rate</text>
+    <rect x="380" y="50" width="150" height="48" fill="#fff" stroke="#333"/>
+    <text x="390" y="78">admit / exclude</text>
+    <rect x="560" y="50" width="150" height="48" fill="#fff" stroke="#333"/>
+    <text x="570" y="78">apply instances</text>
+    <rect x="740" y="50" width="150" height="48" fill="#fff" stroke="#333"/>
+    <text x="750" y="78">overrun stats</text>
+    <path d="M170 74 L200 74" stroke="#333"/>
+    <path d="M350 74 L380 74" stroke="#333"/>
+    <path d="M530 74 L560 74" stroke="#333"/>
+    <path d="M710 74 L740 74" stroke="#333"/>
+    <text x="20" y="140">B1 all sources, one buffer; B2 all sources, static split; B3 budget admission</text>
+    <text x="20" y="168">Holdout: partitioning did not win; excluding high-rate bulk did</text>
+  </g>
+</svg>
