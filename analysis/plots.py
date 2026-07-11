@@ -4,7 +4,7 @@
 Figure mapping after holdout interpretation:
   1 architecture (SVG)
   2 per-source measured MB/s
-  3 B1/B2/B3 overrun (log) — primary evidence
+  3 B1/B2/B3 overrun (log) - primary evidence
   4 B3 source admission
   5 application impact (negative: little movement)
   6 admitted MB/s vs budget cap
@@ -82,7 +82,7 @@ def main() -> int:
     budgets = ["small", "medium", "large"]
     colors = {"B1": "#4c72b0", "B2": "#dd8452", "B3": "#55a868"}
 
-    # Figure 2 — measured MB/s; sys_enter is the volume hog
+    # Figure 2 - measured MB/s; sys_enter is the volume hog
     cal = report.get("calibration") or {}
     names = [n for n in workloads if n in cal]
     fig, axes = plt.subplots(1, max(len(names), 1), figsize=(11, 3.6), squeeze=False)
@@ -119,7 +119,7 @@ def main() -> int:
     save(fig, "figure2_rate.png")
     plt.close(fig)
 
-    # Figure 3 — primary: B1 vs B2 vs B3 overrun
+    # Figure 3 - primary: B1 vs B2 vs B3 overrun
     fig, axes = plt.subplots(1, len(workloads), figsize=(11, 3.8), squeeze=False)
     x = list(range(len(budgets)))
     width = 0.25
@@ -140,7 +140,7 @@ def main() -> int:
     save(fig, "figure3_overrun.png")
     plt.close(fig)
 
-    # Figure 4 — B3 admission composition
+    # Figure 4 - B3 admission composition
     fig, axes = plt.subplots(1, len(workloads), figsize=(11, 3.8), squeeze=False)
     class_colors = {"critical": "#4c72b0", "useful": "#55a868", "bulk": "#c44e52"}
     for col, workload in enumerate(workloads):
@@ -163,7 +163,7 @@ def main() -> int:
     save(fig, "figure4_admission.png")
     plt.close(fig)
 
-    # Figure 5 — application impact (mostly none)
+    # Figure 5 - application impact (mostly none)
     parsec = [w for w in workloads if w != "data-caching"]
     fig, axes = plt.subplots(1, max(len(parsec), 1) + 1, figsize=(11, 4.0), squeeze=False)
     width = 0.22
@@ -203,7 +203,7 @@ def main() -> int:
     save(fig, "figure5_impact.png")
     plt.close(fig)
 
-    # Figure 6 — B3 estimated admitted rate vs budget cap
+    # Figure 6 - B3 estimated admitted rate vs budget cap
     fig, axes = plt.subplots(1, len(workloads), figsize=(11, 3.8), squeeze=False)
     for col, workload in enumerate(workloads):
         ax = axes[0][col]

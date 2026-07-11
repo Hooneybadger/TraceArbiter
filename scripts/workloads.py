@@ -9,12 +9,19 @@ import statistics
 from dataclasses import dataclass
 from pathlib import Path
 
-PARSEC_ROOT = Path(
-    os.environ.get(
-        "TRACEARBITER_PARSEC",
-        "/home/idblab/hachuping/MetricTrust/vendor/parsec",
-    )
-)
+def _parsec_root() -> Path:
+    env = os.environ.get("TRACEARBITER_PARSEC")
+    if env:
+        return Path(env)
+    parent = Path(__file__).resolve().parents[1].parent
+    for name in ("CounterBouncer", "MetricTrust"):
+        candidate = parent / name / "vendor" / "parsec"
+        if candidate.exists():
+            return candidate
+    return parent / "CounterBouncer" / "vendor" / "parsec"
+
+
+PARSEC_ROOT = _parsec_root()
 PIN = os.environ.get("TRACEARBITER_PIN", "2,4,6,8")
 LAYOUT = {
     "blackscholes": "apps",

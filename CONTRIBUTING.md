@@ -49,7 +49,7 @@ Types: `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `ci`.
 
 - One concern per commit. A reviewer should be able to revert it safely.
 - Explain *why* in the body when the diff is not obvious.
-- Do not bundle unrelated files so the commit “looks complete”.
+- Do not bundle unrelated files so the commit "looks complete".
 
 ## Pull requests
 

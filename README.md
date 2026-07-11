@@ -29,17 +29,14 @@ Calibrate each candidate's real MB/s, then lexicographically admit
 If critical sources alone exceed the budget, say so
 (`CRITICAL_SOURCES_EXCEED_BUDGET`) and still keep them.
 
-## What TraceArbiter is not
+Out of scope: profiler / flame-graph UI, a custom ring buffer, a new
+tracing kernel, eBPF as the primary backend, LLM diagnosis. Holdout
+also did not show multi-instance **buffer partitioning** as a
+universal win.
 
-- Not a profiler, flame-graph UI, or dashboard.
-- Not a custom ring buffer or a new tracing kernel.
-- Not an eBPF-primary or LLM diagnosis tool.
-- Not a demonstration that multi-instance **buffer partitioning**
-  is a universal win. Holdout did not support that.
-
-It uses existing tracefs primitives: instances, event enable files,
-buffer size, and buffer stats. Instances are an apply mechanism,
-not the result.
+The implementation uses stock tracefs: instances, event enable
+files, buffer size, and buffer stats. Instances are how an admitted
+set is applied, not the result.
 
 ## Why "trace everything" is not free
 
@@ -57,7 +54,7 @@ was.
 
 ## Architecture
 
-![Figure 1](docs/figures/figure1_architecture.svg)
+![Figure 1](docs/figures/figure1_architecture.png)
 
 Priorities are user-declared (`critical` / `useful` / `bulk`), not
 ML. The first-class decision is **ADMIT / EXCLUDE**. Optional
@@ -82,10 +79,10 @@ snapshot; checksums stay under local `artifacts/provenance/`.
 
 ## Calibration
 
-`raw_syscalls:sys_enter` dominates volume (~2.4–3.0 MB/s). Signed
+`raw_syscalls:sys_enter` dominates volume (~2.4-3.0 MB/s). Signed
 per-source overheads are often negative (noise, not clamped zeros).
 
-![Figure 2 — per-source MB/s](docs/figures/figure2_rate.png)
+![Figure 2 - per-source MB/s](docs/figures/figure2_rate.png)
 
 ## Baselines (B2 is the control)
 
@@ -93,7 +90,7 @@ Frozen after calibration. Weights were not retuned after holdout.
 
 | Name | Source set | Buffer |
 |---|---|---|
-| B0 | none | — |
+| B0 | none | - |
 | **B1** | all six | one instance, same `buffer_kb` |
 | **B2** | all six | static 70% / 30% critical / bulk **split** |
 | **B3** | admitted subset | remaining budget, split only if bulk is in |
@@ -113,7 +110,7 @@ B3 is allowed to **exclude** sources.
 Primary evidence: kernel `stats` **overrun**, who was admitted, and
 whether the plan was feasible. Snapshot count / REF is **not** an
 accuracy metric (REF overruns on data-caching; blackscholes B3
-large is 3.55× REF because extra sources changed sched traffic).
+large is 3.55x REF because extra sources changed sched traffic).
 
 ### Partitioning does not win (source set fixed)
 
@@ -139,12 +136,12 @@ improvement. A single larger buffer is sometimes better
 
 | Workload | Budget | B3 set | B1 | B2 | B3 | B1/B3 |
 |---|---|---|---:|---:|---:|---:|
-| blackscholes | medium | no sys_enter | 2,389,941 | 2,199,687 | 126,839 | 18.8× |
-| swaptions | small | no sys_enter | 2,832,425 | 2,866,069 | 23,408 | 121× |
-| data-caching | medium | no sys_enter | 84,232,579 | 84,038,564 | 9,169,708 | 9.2× |
-| data-caching | small | critical only, **infeasible** | 84,429,583 | 84,892,596 | 9,329,201 | 9.1× |
+| blackscholes | medium | no sys_enter | 2,389,941 | 2,199,687 | 126,839 | 18.8x |
+| swaptions | small | no sys_enter | 2,832,425 | 2,866,069 | 23,408 | 121x |
+| data-caching | medium | no sys_enter | 84,232,579 | 84,038,564 | 9,169,708 | 9.2x |
+| data-caching | small | critical only, **infeasible** | 84,429,583 | 84,892,596 | 9,329,201 | 9.1x |
 
-The 9×–121× drop is **not** "the allocator got smarter." It is
+The 9x-121x drop is **not** "the allocator got smarter." It is
 **not admitting the high-rate bulk source.** B2 keeps `sys_enter`
 and does not get that drop.
 
@@ -157,22 +154,23 @@ and does not get that drop.
 | data-caching | large | all six | 81,363,762 | 80,234,327 | 78,720,800 |
 
 Same source set + partitioned buffers: no lasting B3 advantage.
-blackscholes large B3 is **1.86× worse** than B1.
+blackscholes large B3 is **1.86x worse** than B1.
 
 data-caching small B3: estimated 2.60 MB/s vs cap 1.63 MB/s,
 `CRITICAL_SOURCES_EXCEED_BUDGET`. Critical three stay enabled.
-Overrun is still 9,329,201 — infeasible was reported, not hidden,
+Overrun is still 9,329,201 - infeasible was reported, not hidden,
 and critical admission is not the same as "signals preserved."
 
-![Figure 3 — overrun B1/B2/B3](docs/figures/figure3_overrun.png)
-![Figure 4 — B3 admission](docs/figures/figure4_admission.png)
-![Figure 5 — application impact](docs/figures/figure5_impact.png)
-![Figure 6 — admitted MB/s vs cap](docs/figures/figure6_feasibility.png)
+![Figure 3 - overrun B1/B2/B3](docs/figures/figure3_overrun.png)
+![Figure 4 - B3 admission](docs/figures/figure4_admission.png)
+![Figure 5 - application impact](docs/figures/figure5_impact.png)
+![Figure 6 - admitted MB/s vs cap](docs/figures/figure6_feasibility.png)
 
-PARSEC wall-time overhead 0–2.5% (noise). CloudSuite wall time is
-the 30 s timeout; p99 stays 0.0221–0.0231 ms.
+PARSEC wall-time overhead 0-2.5% (noise). CloudSuite wall time is
+the 30 s timeout; p99 stays 0.0221-0.0231 ms.
 
-Tables: `docs/results.md`. Method: `docs/methodology.md`.
+Tables: [docs/results.md](docs/results.md). Method:
+[docs/methodology.md](docs/methodology.md).
 
 ## Negative results
 
@@ -191,7 +189,8 @@ Tables: `docs/results.md`. Method: `docs/methodology.md`.
 
 Tracefs on this host is a group grant via
 `scripts/setup_host.sh --apply` (not chmod 777). Vendor PARSEC /
-CloudSuite binaries come from MetricTrust `vendor/`.
+CloudSuite binaries come from a sibling CounterBouncer `vendor/`
+tree (`../CounterBouncer/vendor`, or `TRACEARBITER_PARSEC`).
 
 ```sh
 python3 -m venv .venv
@@ -206,7 +205,8 @@ python3 scripts/record_provenance.py
 ```
 
 Do not retune `configs/budgets/*.yaml` after looking at holdout.
-CI runs unit tests only; no hardware ftrace.
+CI runs unit tests only; no hardware ftrace. Campaign aggregates and
+raw JSONL stay in local `artifacts/`, not in git.
 
 ## Limitations
 
@@ -219,7 +219,7 @@ CI runs unit tests only; no hardware ftrace.
 ## Position relevance
 
 C++20, ftrace/tracefs, ring-buffer accounting, and a measured
-admission policy under a real capacity budget — complementary to
+admission policy under a real capacity budget - complementary to
 CounterBouncer's PMU validity work.
 
 ## Sources

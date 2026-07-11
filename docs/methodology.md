@@ -49,9 +49,9 @@ estimator, not a claim that costs are independent.
 
 - B0: no tracing
 - B1: all candidates in one instance, same total `buffer_kb`
-- B2: **same six candidates as B1**, static 70%/30% split — partitioning control
+- B2: **same six candidates as B1**, static 70%/30% split - partitioning control
 - B3: TraceArbiter admission plan from calibration
-- REF: critical sources only, large buffer — not ground truth
+- REF: critical sources only, large buffer - not ground truth
 
 ## Primary metrics after holdout
 

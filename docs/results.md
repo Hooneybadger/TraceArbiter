@@ -27,7 +27,7 @@ This table is the partitioning control. B2 is not omitted.
 | data-caching | medium | 84,232,579 | 84,038,564 | 9,169,708 | no |
 | data-caching | large | 81,363,762 | 80,234,327 | 78,720,800 | yes |
 
-B2 never produces the 9×–121× overrun drop. That drop appears only
+B2 never produces the 9x-121x overrun drop. That drop appears only
 when B3 excludes `raw_syscalls:sys_enter`.
 
 ## Frozen budgets
@@ -59,29 +59,29 @@ Critical sources remain enabled. Overrun 9,329,201.
 
 | Workload | Strategy | Budget | Runtime s | Overhead % | Overrun | p99 ms | Feasible | c/u/b |
 |---|---|---|---:|---:|---:|---:|---|---|
-| blackscholes | B0 | none | 12.946 | — | 0 | — | yes | 0/0/0 |
-| blackscholes | B1 | small | 13.011 | 0.500 | 2,505,416 | — | yes | 3/2/1 |
-| blackscholes | B2 | small | 13.115 | 1.302 | 2,662,293 | — | yes | 3/2/1 |
-| blackscholes | B3 | small | 13.083 | 1.057 | 331,374 | — | yes | 3/2/0 |
-| blackscholes | B1 | medium | 13.153 | 1.600 | 2,389,941 | — | yes | 3/2/1 |
-| blackscholes | B2 | medium | 12.992 | 0.353 | 2,199,687 | — | yes | 3/2/1 |
-| blackscholes | B3 | medium | 12.999 | 0.411 | 126,839 | — | yes | 3/2/0 |
-| blackscholes | B1 | large | 13.266 | 2.474 | 1,004,742 | — | yes | 3/2/1 |
-| blackscholes | B2 | large | 12.999 | 0.413 | 1,664,378 | — | yes | 3/2/1 |
-| blackscholes | B3 | large | 12.948 | 0.012 | 1,868,815 | — | yes | 3/2/1 |
-| blackscholes | REF | ref | 12.922 | -0.185 | 0 | — | yes | 3/0/0 |
-| swaptions | B0 | none | 15.531 | — | 0 | — | yes | 0/0/0 |
-| swaptions | B1 | small | 15.575 | 0.282 | 2,832,425 | — | yes | 3/2/1 |
-| swaptions | B2 | small | 15.595 | 0.407 | 2,866,069 | — | yes | 3/2/1 |
-| swaptions | B3 | small | 15.672 | 0.906 | 23,408 | — | yes | 3/2/0 |
-| swaptions | B1 | medium | 15.600 | 0.438 | 2,730,879 | — | yes | 3/2/1 |
-| swaptions | B2 | medium | 15.616 | 0.546 | 2,799,180 | — | yes | 3/2/1 |
-| swaptions | B3 | medium | 15.624 | 0.599 | 2,746,747 | — | yes | 3/2/1 |
-| swaptions | B1 | large | 15.582 | 0.323 | 1,843,095 | — | yes | 3/2/1 |
-| swaptions | B2 | large | 15.618 | 0.555 | 2,005,440 | — | yes | 3/2/1 |
-| swaptions | B3 | large | 15.613 | 0.527 | 2,538,237 | — | yes | 3/2/1 |
-| swaptions | REF | ref | 15.433 | -0.636 | 0 | — | yes | 3/0/0 |
-| data-caching | B0 | none | 30.045 | — | 0 | 0.0221 | yes | 0/0/0 |
+| blackscholes | B0 | none | 12.946 | - | 0 | - | yes | 0/0/0 |
+| blackscholes | B1 | small | 13.011 | 0.500 | 2,505,416 | - | yes | 3/2/1 |
+| blackscholes | B2 | small | 13.115 | 1.302 | 2,662,293 | - | yes | 3/2/1 |
+| blackscholes | B3 | small | 13.083 | 1.057 | 331,374 | - | yes | 3/2/0 |
+| blackscholes | B1 | medium | 13.153 | 1.600 | 2,389,941 | - | yes | 3/2/1 |
+| blackscholes | B2 | medium | 12.992 | 0.353 | 2,199,687 | - | yes | 3/2/1 |
+| blackscholes | B3 | medium | 12.999 | 0.411 | 126,839 | - | yes | 3/2/0 |
+| blackscholes | B1 | large | 13.266 | 2.474 | 1,004,742 | - | yes | 3/2/1 |
+| blackscholes | B2 | large | 12.999 | 0.413 | 1,664,378 | - | yes | 3/2/1 |
+| blackscholes | B3 | large | 12.948 | 0.012 | 1,868,815 | - | yes | 3/2/1 |
+| blackscholes | REF | ref | 12.922 | -0.185 | 0 | - | yes | 3/0/0 |
+| swaptions | B0 | none | 15.531 | - | 0 | - | yes | 0/0/0 |
+| swaptions | B1 | small | 15.575 | 0.282 | 2,832,425 | - | yes | 3/2/1 |
+| swaptions | B2 | small | 15.595 | 0.407 | 2,866,069 | - | yes | 3/2/1 |
+| swaptions | B3 | small | 15.672 | 0.906 | 23,408 | - | yes | 3/2/0 |
+| swaptions | B1 | medium | 15.600 | 0.438 | 2,730,879 | - | yes | 3/2/1 |
+| swaptions | B2 | medium | 15.616 | 0.546 | 2,799,180 | - | yes | 3/2/1 |
+| swaptions | B3 | medium | 15.624 | 0.599 | 2,746,747 | - | yes | 3/2/1 |
+| swaptions | B1 | large | 15.582 | 0.323 | 1,843,095 | - | yes | 3/2/1 |
+| swaptions | B2 | large | 15.618 | 0.555 | 2,005,440 | - | yes | 3/2/1 |
+| swaptions | B3 | large | 15.613 | 0.527 | 2,538,237 | - | yes | 3/2/1 |
+| swaptions | REF | ref | 15.433 | -0.636 | 0 | - | yes | 3/0/0 |
+| data-caching | B0 | none | 30.045 | - | 0 | 0.0221 | yes | 0/0/0 |
 | data-caching | B1 | small | 30.092 | 0.155 | 84,429,583 | 0.0231 | yes | 3/2/1 |
 | data-caching | B2 | small | 30.081 | 0.120 | 84,892,596 | 0.0221 | yes | 3/2/1 |
 | data-caching | B3 | small | 30.095 | 0.167 | 9,329,201 | 0.0221 | no | 3/0/0 |
@@ -121,9 +121,9 @@ Critical sources remain enabled. Overrun 9,329,201.
 
 ## Figures
 
-1. `docs/figures/figure1_architecture.svg`
-2. `docs/figures/figure2_rate.png`
-3. `docs/figures/figure3_overrun.png`
-4. `docs/figures/figure4_admission.png`
-5. `docs/figures/figure5_impact.png`
-6. `docs/figures/figure6_feasibility.png`
+1. [figure1_architecture.png](figures/figure1_architecture.png)
+2. [figure2_rate.png](figures/figure2_rate.png)
+3. [figure3_overrun.png](figures/figure3_overrun.png)
+4. [figure4_admission.png](figures/figure4_admission.png)
+5. [figure5_impact.png](figures/figure5_impact.png)
+6. [figure6_feasibility.png](figures/figure6_feasibility.png)

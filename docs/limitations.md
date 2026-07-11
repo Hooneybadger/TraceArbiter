@@ -1,7 +1,7 @@
 # Limitations
 
-See `docs/methodology.md` and the Negative results section of
-`README.md`.
+See [methodology.md](methodology.md) and the Negative results section
+of [README.md](../README.md).
 
 - Tracefs on this lab host is group-granted (`idblab`), not world
   writable. Reboot can drop that grant until `setup_host.sh --apply`

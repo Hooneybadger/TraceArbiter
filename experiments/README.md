@@ -7,8 +7,8 @@ A hardware campaign needs:
 1. Group-writable tracefs (`scripts/setup_host.sh --apply` on this lab
    host; not chmod 777).
 2. PARSEC native binaries and CloudSuite Data Caching Docker client.
-   This tree reuses a local MetricTrust/CounterBouncer `vendor/`
-   install; artifacts stay out of git.
+   This tree reuses a sibling CounterBouncer `vendor/` install
+   (`../CounterBouncer/vendor`); artifacts stay out of git.
 3. Frozen budgets in `configs/budgets/` after calibration. Do not
    retune weights after holdout.
 
@@ -20,5 +20,7 @@ python3 analysis/analyze.py
 ```
 
 Each `exec` JSON records kernel, CPU, command, plan, and buffer
-stats. Published numbers are copied into `docs/results.md`. Raw
-`artifacts/` JSON is local.
+stats. Published numbers are copied into
+[docs/results.md](../docs/results.md). Raw `artifacts/` JSON is
+local. Aggregates and JSONL for `native-holdout-v1` stay under
+`artifacts/`, not in git.

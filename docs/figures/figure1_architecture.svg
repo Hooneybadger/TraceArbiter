@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="920" height="220" viewBox="0 0 920 220">
   <rect width="920" height="220" fill="#f7f7f5"/>
-  <text x="20" y="28" font-family="sans-serif" font-size="16">TraceArbiter — admission under finite ring-buffer capacity</text>
+  <text x="20" y="28" font-family="sans-serif" font-size="16">TraceArbiter - admission under finite ring-buffer capacity</text>
   <g font-family="sans-serif" font-size="12">
     <rect x="20" y="50" width="150" height="48" fill="#fff" stroke="#333"/>
     <text x="30" y="78">discover</text>
